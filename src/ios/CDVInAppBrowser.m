@@ -95,18 +95,22 @@
         NSURL* absoluteUrl = [[NSURL URLWithString:url relativeToURL:baseUrl] absoluteURL];
 
         if ([self isSystemUrl:absoluteUrl]) {
+            NSLog(@"MKTW self isSystemUrl:absoluteUrl");
             target = kInAppBrowserTargetSystem;
         }
 
         if ([target isEqualToString:kInAppBrowserTargetSelf]) {
+            NSLog(@"MKTW kInAppBrowserTargetSelf");
             [self openInCordovaWebView:absoluteUrl withOptions:options];
         } else if ([target isEqualToString:kInAppBrowserTargetSystem]) {
+            NSLog(@"MKTW kInAppBrowserTargetSystem");
             [self openInSystem:absoluteUrl];
         } else { // _blank or anything else
+            NSLog(@"MKTW LINK OTHER");
             [self openInSystem:absoluteUrl];
         }
 
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"hey dummy"];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"incorrect number of arguments"];
     }
