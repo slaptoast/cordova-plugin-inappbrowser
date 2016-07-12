@@ -99,18 +99,18 @@
             target = kInAppBrowserTargetSystem;
         }
 
+        NSLog(@"options");
+        NSLog(options);
+
         if ([target isEqualToString:kInAppBrowserTargetSelf]) {
-            NSLog(@"MKTW kInAppBrowserTargetSelf");
             [self openInCordovaWebView:absoluteUrl withOptions:options];
         } else if ([target isEqualToString:kInAppBrowserTargetSystem]) {
-            NSLog(@"MKTW kInAppBrowserTargetSystem");
-            [self openInSystem:absoluteUrl];
+            [self openInInAppBrowser:absoluteUrl withOptions:options];
         } else { // _blank or anything else
-            NSLog(@"MKTW LINK OTHER");
             [self openInSystem:absoluteUrl];
         }
 
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"hey dummy"];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"incorrect number of arguments"];
     }
