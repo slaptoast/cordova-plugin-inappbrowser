@@ -99,8 +99,9 @@
             target = kInAppBrowserTargetSystem;
         }
 
-        NSLog(@"options");
-        NSLog(options);
+        if([absoluteUrl.absoluteString hasPrefix:@"file://"]) {
+            return;
+        }
 
         if ([target isEqualToString:kInAppBrowserTargetSelf]) {
             [self openInCordovaWebView:absoluteUrl withOptions:options];
